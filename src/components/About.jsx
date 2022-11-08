@@ -10,7 +10,7 @@ function About() {
           </p>
         </div>
 
-        <p className="text-xl mt-20">
+        <p className="text-xl mt-8">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas facere illum
           reprehenderit explicabo error eius ullam odit consequuntur sed voluptatibus,
           minus eum ipsum veniam quae temporibus voluptatem mollitia cum quasi magnam!
