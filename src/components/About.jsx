@@ -6,26 +6,27 @@ function About() {
       <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
         <div className="pb-8">
           <p className="text-4xl font-bold inline border-b-4 border-gray-500">
-            About
+            Sobre mim
           </p>
         </div>
 
         <p className="text-xl mt-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas facere illum
-          reprehenderit explicabo error eius ullam odit consequuntur sed voluptatibus,
-          minus eum ipsum veniam quae temporibus voluptatem mollitia cum quasi magnam!
-          Eos dolorem veritatis voluptatem ipsa tempore ut iste eum corporis error modi
-          quidem quia iusto earum tempora, nobis cumque.
+          Desenvolvedor Back-end, com conhecimento
+          também em desenvolvimento web e mobile.
+          Bacharelando em Ciência da Computação no
+          CEUB - Brasília.
         </p>
 
         <br />
 
         <p className="text-xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, doloribus
-          laborum quaerat est unde asperiores magnam beatae consequatur perspiciatis
-          error itaque eius amet blanditiis sed fugiat nam, aliquid voluptas expedita,
-          consectetur vitae ab fugit repellendus. Quidem voluptatem eligendi ipsam atque,
-          suscipit, placeat molestiae ea quaerat, sapiente amet ipsum nesciunt ducimus!
+          Formado no curso de Desenvolvimento Web
+          da Trybe, onde realizei mais de 40 projetos que
+          colocaram em prática todos os conhecimentos
+          por lá ensinados, como React, Node, Python,
+          Docker e diversas outros frameworks e
+          ferramentas, além de diversos conteúdos de
+          softskills e metodologias ágeis.
         </p>
 
       </div>
