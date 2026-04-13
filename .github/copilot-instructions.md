@@ -1,8 +1,8 @@
-# Portfolio — lucas-fmp.github.io
+# Portfolio - lucas-fmp.github.io
 
 ## Stack
 - **Framework**: React 18 (JSX, functional components + hooks)
-- **Styling**: Tailwind CSS v3 — utility-first, sem CSS-in-JS, sem styled-components
+- **Styling**: Tailwind CSS v3 - utility-first, sem CSS-in-JS, sem styled-components
 - **Icons**: react-icons
 - **Scroll**: react-scroll (âncoras por `name`)
 - **Fontes**: Raleway (corpo), Great Vibes (classe `font-signature`)
@@ -26,11 +26,11 @@ src/
 
 ## Convenções
 - Componentes: PascalCase, exportação default no final do arquivo
-- Tailwind: classes utilitárias diretamente no JSX — não adicionar estilos inline (`style={}`) sem necessidade
+- Tailwind: classes utilitárias diretamente no JSX - não adicionar estilos inline (`style={}`) sem necessidade
 - Responsividade: mobile-first com breakpoints `md:` e `lg:`
 - Imagens: sempre com `alt` descritivo
 
 ## Fluxo de trabalho (Git)
-- Branch protegida: `main` e `gh-pages` — **nunca commitar direto**
+- Branch protegida: `main` e `gh-pages` - **nunca commitar direto**
 - Fluxo: `feature/<descricao>` → PR → merge
 - Mesmo para correções pequenas: sempre branch + PR

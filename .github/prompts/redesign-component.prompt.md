@@ -20,7 +20,7 @@ Leia o componente especificado em `src/components/` e aplique melhorias estétic
 3. **Implementação**: editar o arquivo com as mudanças, mantendo a paleta do projeto
 
 ## Restrições
-- Apenas Tailwind CSS — sem `style={}` inline
+- Apenas Tailwind CSS - sem `style={}` inline
 - Manter dark theme: `bg-black`, `bg-gray-800`, acento `from-cyan-500 to-blue-500`
 - Preservar toda a lógica existente (scroll links, imports, estado)
 - Não adicionar dependências novas

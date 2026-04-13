@@ -1,137 +1,112 @@
-import React from 'react';
-import bootstrap from '../assets/bootstrap.png';
-import css from '../assets/css.png';
-import docker from '../assets/docker.png';
-import github from '../assets/github.png';
-import html from '../assets/html.png';
-import javascript from '../assets/javascript.png';
-import jest from '../assets/jest.png';
-import mysql from '../assets/mysql.png';
-import node from '../assets/node.png';
-import react from '../assets/react.png';
-import redux from '../assets/redux.png';
-import sequelize from '../assets/sequelize.png';
-import tailwind from '../assets/tailwind.png';
-import typescript from '../assets/typescript.png';
+import { motion } from 'framer-motion';
+import { HiOutlineOfficeBuilding } from 'react-icons/hi';
+import { useLanguage } from '../i18n/LanguageContext';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const techTags = [
+  'Java', 'Quarkus', 'Oracle DB', 'REST APIs',
+  'Docker', 'Kubernetes', 'Git', 'Scrum', 'CI/CD',
+];
 
 function Experience() {
-  const techs = [
-    {
-      id: 1,
-      src: javascript,
-      title: 'JavaScript',
-      style: 'shadow-yellow-300',
-    },
-    {
-      id: 2,
-      src: html,
-      title: 'HTML',
-      style: 'shadow-orange-400',
-    },
-    {
-      id: 3,
-      src: css,
-      title: 'CSS',
-      style: 'shadow-blue-400',
-    },
-    {
-      id: 4,
-      src: react,
-      title: 'React',
-      style: 'shadow-cyan-400',
-    },
-    {
-      id: 5,
-      src: redux,
-      title: 'Redux',
-      style: 'shadow-violet-500',
-    },
-    {
-      id: 6,
-      src: tailwind,
-      title: 'Tailwind',
-      style: 'shadow-cyan-200',
-    },
-    {
-      id: 7,
-      src: bootstrap,
-      title: 'Bootstrap',
-      style: 'shadow-violet-700',
-    },
-    {
-      id: 8,
-      src: jest,
-      title: 'Jest',
-      style: 'shadow-rose-300',
-    },
-    {
-      id: 9,
-      src: github,
-      title: 'GitHub',
-      style: 'shadow-gray-400',
-    },
-    {
-      id: 10,
-      src: docker,
-      title: 'Docker',
-      style: 'shadow-blue-500',
-    },
-    {
-      id: 11,
-      src: typescript,
-      title: 'TypeScript',
-      style: 'shadow-blue-400',
-    },
-    {
-      id: 12,
-      src: mysql,
-      title: 'MySQL',
-      style: 'shadow-sky-700',
-    },
-    {
-      id: 13,
-      src: node,
-      title: 'Node.js',
-      style: 'shadow-lime-300',
-    },
-    {
-      id: 14,
-      src: sequelize,
-      title: 'Sequelize',
-      style: 'shadow-blue-400',
-    },
-  ];
+  const { t } = useLanguage();
+  const { experience } = t;
 
   return (
-    <div
-      name="experiência"
-      className="bg-gradient-to-b from-gray-800 to-black w-full h-full"
-    >
-      <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
+    <section id="experience" className="relative py-32 md:py-40">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section header */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeUp}
+          transition={{ duration: 0.7 }}
+          className="mb-20"
+        >
+          <span className="text-cyan-400 text-sm font-medium tracking-widest uppercase">
+            {experience.label}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4">
+            {experience.heading[0]}
+            <br />
+            <span className="text-gradient">{experience.heading[1]}</span>
+          </h2>
+        </motion.div>
 
-        <div>
-          <p className="text-4xl font-bold border-b-4 border-gray-500 p-2 inline">
-            Experiência
-          </p>
-          <p className="py-6">
-            Essas são algumas das tecnologias que eu trabalho
-          </p>
-        </div>
+        {/* Featured experience card */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeUp}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative group"
+        >
+          {/* Hover glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center py-8 px-12 sm:px-0">
-          {
-            techs.map(({
-              id, src, title, style,
-            }) => (
-              <div key={id} className={`shadow-md hover:scale-105 duration-500 py-2 rounded-lg ${style}`}>
-                <img src={src} alt="" className="w-20 mx-auto" />
-                <p className="mt-4">{title}</p>
+          <div className="relative p-8 md:p-12 rounded-3xl border border-white/5 bg-white/[0.02]">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center">
+                    <HiOutlineOfficeBuilding className="text-cyan-400" size={20} />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-neutral-500 text-sm">{experience.period}</span>
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  {experience.company}
+                </h3>
+                <p className="text-cyan-400 font-medium">
+                  {experience.role}
+                </p>
               </div>
-            ))
-          }
-        </div>
+            </div>
+
+            <div className="space-y-4 mb-8">
+              <p className="text-neutral-300 leading-relaxed">
+                {experience.desc1}
+              </p>
+              <p className="text-neutral-300 leading-relaxed">
+                {experience.desc2}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-8">
+              {techTags.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1.5 text-xs font-medium rounded-full bg-white/5 text-neutral-300 border border-white/5"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Key metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/5">
+              {experience.metrics.map(({ label, value }) => (
+                <div key={label}>
+                  <p className="text-neutral-500 text-xs uppercase tracking-wider">{label}</p>
+                  <p className="text-white font-medium mt-1">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
 

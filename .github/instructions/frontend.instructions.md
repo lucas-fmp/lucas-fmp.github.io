@@ -2,7 +2,7 @@
 description: "Use when criando ou editando componentes JSX, estilos CSS ou classes Tailwind. Cobre padrões de design, acessibilidade e consistência visual do portfolio."
 applyTo: "src/**/*.{jsx,css}"
 ---
-# Frontend — Padrões e Consistência Visual
+# Frontend - Padrões e Consistência Visual
 
 ## Tailwind
 - Nunca usar `style={}` inline quando uma classe Tailwind resolve
@@ -19,7 +19,7 @@ applyTo: "src/**/*.{jsx,css}"
 | Texto secundário | `text-gray-400` / `text-gray-500` |
 | Borda / destaque | `border-cyan-500` / `text-cyan-500` |
 
-Novas seções devem usar esses mesmos tokens — nunca introduzir cores avulsas sem intenção clara.
+Novas seções devem usar esses mesmos tokens - nunca introduzir cores avulsas sem intenção clara.
 
 ## Responsividade
 - Sempre mobile-first: escreva a versão mobile base, depois adicione `md:` e `lg:`
@@ -28,7 +28,7 @@ Novas seções devem usar esses mesmos tokens — nunca introduzir cores avulsas
 ## Acessibilidade
 - Imagens sempre com `alt` descritivo (não deixar vazio nem genérico como "image")
 - Botões/links interativos devem ter `:focus` visível (Tailwind inclui por padrão com `focus:ring`)
-- Usar elementos semânticos: `<section>`, `<nav>`, `<h1>`–`<h3>`, `<p>` — não abusar de `<div>`
+- Usar elementos semânticos: `<section>`, `<nav>`, `<h1>`–`<h3>`, `<p>` - não abusar de `<div>`
 - Links de navegação via `react-scroll` devem usar `name` como âncora
 
 ## Animações

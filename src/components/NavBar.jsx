@@ -1,73 +1,137 @@
-import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-scroll';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HiMenuAlt4, HiX } from 'react-icons/hi';
+import { useLanguage } from '../i18n/LanguageContext';
+import LanguageToggle from './LanguageToggle';
 
 function NavBar() {
-  const [nav, setNav] = useState(false);
+  const { t } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const links = [
-    {
-      id: 1,
-      link: 'home',
-    },
-    {
-      id: 2,
-      link: 'sobre',
-    },
-    {
-      id: 3,
-      link: 'portfolio',
-    },
-    {
-      id: 4,
-      link: 'experiência',
-    },
-    {
-      id: 5,
-      link: 'contato',
-    },
+  const navLinks = [
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.experience, href: '#experience' },
+    { label: t.nav.stack, href: '#stack' },
+    { label: t.nav.contact, href: '#contact' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileOpen]);
+
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed">
-      <div>
-        <h1 className="text-5xl font-signature ml-2">Lucas Fernando</h1>
-      </div>
-
-      <ul className="hidden md:flex">
-        {
-          links.map(({ id, link }) => (
-            <li key={id} className="px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 duration-200">
-              <Link to={link} smooth duration={500}>{link}</Link>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div
-        onClick={() => setNav(!nav)}
-        onKeyDown={() => setNav(!nav)}
-        role="presentation"
-        className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? 'bg-black/70 backdrop-blur-xl border-b border-white/5'
+            : 'bg-transparent'
+        }`}
       >
-        {
-          nav ? <FaTimes size={30} /> : <FaBars size={30} />
-        }
-      </div>
-      {
-        nav && (
-          <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-            {
-            links.map(({ id, link }) => (
-              <li key={id} className="px-4 cursor-pointer capitalize py-6 text-4xl">
-                <Link onClick={() => setNav(!nav)} to={link} smooth duration={500}>{link}</Link>
-              </li>
-            ))
-          }
-          </ul>
-        )
-      }
-    </div>
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+          <a
+            href="#"
+            className="text-white font-bold text-xl tracking-tight"
+            aria-label="Home"
+          >
+            LM<span className="text-cyan-400">.</span>
+          </a>
+
+          <div className="hidden md:flex items-center gap-8">
+            <ul className="flex items-center gap-8">
+              {navLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="text-sm text-neutral-400 hover:text-white transition-colors duration-300 relative group"
+                  >
+                    {label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <LanguageToggle />
+
+            <a
+              href="mailto:lucasfernandomacedo13@gmail.com"
+              className="text-sm px-4 py-2 rounded-full border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
+            >
+              {t.nav.getInTouch}
+            </a>
+          </div>
+
+          <div className="flex items-center gap-4 md:hidden">
+            <LanguageToggle />
+            <button
+              onClick={() => setIsMobileOpen(true)}
+              className="text-neutral-400 hover:text-white transition-colors"
+              aria-label="Open menu"
+            >
+              <HiMenuAlt4 size={24} />
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center"
+          >
+            <button
+              onClick={() => setIsMobileOpen(false)}
+              className="absolute top-6 right-6 text-neutral-400 hover:text-white transition-colors"
+              aria-label="Close menu"
+            >
+              <HiX size={28} />
+            </button>
+
+            <nav className="flex flex-col items-center gap-8">
+              {navLinks.map(({ label, href }, i) => (
+                <motion.a
+                  key={href}
+                  href={href}
+                  onClick={() => setIsMobileOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-3xl font-light text-white hover:text-cyan-400 transition-colors"
+                >
+                  {label}
+                </motion.a>
+              ))}
+              <motion.a
+                href="mailto:lucasfernandomacedo13@gmail.com"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+                onClick={() => setIsMobileOpen(false)}
+                className="mt-4 px-6 py-3 rounded-full border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 transition-all"
+              >
+                {t.nav.getInTouch}
+              </motion.a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

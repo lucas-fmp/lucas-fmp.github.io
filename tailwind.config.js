@@ -2,11 +2,17 @@
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
+    './index.html',
   ],
   theme: {
-    extend: {},
-    fontFamily: {
-      signature: ['Great Vibes'],
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        signature: ['Great Vibes', 'cursive'],
+      },
+      animation: {
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
     },
   },
   plugins: [],

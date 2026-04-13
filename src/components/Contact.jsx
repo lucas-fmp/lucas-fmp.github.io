@@ -1,48 +1,88 @@
-import React from 'react';
+import { motion } from 'framer-motion';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useLanguage } from '../i18n/LanguageContext';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const contactLinks = [
+  { icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/lucas-fmp/', label: 'LinkedIn' },
+  { icon: FaGithub, href: 'https://github.com/lucas-fmp', label: 'GitHub' },
+  { icon: HiOutlineMail, href: 'mailto:lucasfernandomacedo13@gmail.com', label: 'Email' },
+];
 
 function Contact() {
-  return (
-    <div name="contato" className="w-full h-screen bg-gradient-to-b from-black to-gray-800 p-4 text-white">
-      <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
-        <div className="pb-8">
-          <p className="text-4xl font-bold inline border-b-4 border-gray-500">Contato</p>
-          <p className="py-6">Preencha o formulário abaixo para entrar em contato comigo</p>
-        </div>
+  const { t } = useLanguage();
+  const { contact } = t;
 
-        <div className="flex justify-center items-center">
-          <form
-            action="https://getform.io/f/b86dccb5-f6b5-468b-b799-d09c82bc9b86"
-            method="POST"
-            className="flex flex-col w-full md:w-1/2"
+  return (
+    <section id="contact" className="relative py-32 md:py-40">
+      <div className="max-w-6xl mx-auto px-6 text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ staggerChildren: 0.15 }}
+        >
+          <motion.span
+            variants={fadeUp}
+            transition={{ duration: 0.7 }}
+            className="text-cyan-400 text-sm font-medium tracking-widest uppercase block"
           >
-            <input
-              type="text"
-              name="name"
-              placeholder="Insira o seu nome"
-              className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder="Insira o seu email"
-              className="p-2 my-4 bg-transparent border-2 rounded-md text-white focus:outline-none"
-            />
-            <textarea
-              name="message"
-              rows="10"
-              placeholder="Insira a sua mensagem"
-              className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300"
-            >
-              Vamos conversar
-            </button>
-          </form>
-        </div>
+            {contact.label}
+          </motion.span>
+
+          <motion.h2
+            variants={fadeUp}
+            transition={{ duration: 0.7 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6"
+          >
+            {contact.heading[0]}
+            <br />
+            <span className="text-gradient">{contact.heading[1]}</span>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.7 }}
+            className="text-neutral-400 text-lg max-w-xl mx-auto mb-12"
+          >
+            {contact.desc}
+          </motion.p>
+
+          <motion.a
+            variants={fadeUp}
+            transition={{ duration: 0.7 }}
+            href="mailto:lucasfernandomacedo13@gmail.com"
+            className="inline-flex px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium text-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            {contact.cta}
+          </motion.a>
+
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.7 }}
+            className="flex items-center justify-center gap-4 mt-12"
+          >
+            {contactLinks.map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 hover:text-cyan-400 hover:border-cyan-400/30 transition-all duration-300"
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
 
